@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Unity WebGL Player | PirateRush_WebDemo1</title>
     <style>
-        /* Loader styles */
+        /* Loader and progress styles */
         #loader {
             position: fixed;
             width: 100%;
@@ -15,17 +15,43 @@
             background-color: #282828;
             color: white;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             font-size: 24px;
-            z-index: 9999; /* Ensure it is on top */
+            z-index: 9999;
+        }
+
+        #progress-bar {
+            width: 80%;
+            height: 20px;
+            background-color: #555;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+
+        #progress {
+            height: 100%;
+            width: 0;
+            background-color: #4CAF50;
+            border-radius: 5px;
+        }
+
+        #progress-percentage {
+            margin-top: 10px;
         }
     </style>
 </head>
 <body style="text-align: center; padding: 0; border: 0; margin: 0;">
 
-    <!-- Loader element -->
-    <div id="loader">Loading, please wait...</div>
+    <!-- Loader with progress bar -->
+    <div id="loader">
+        Loading, please wait...
+        <div id="progress-bar">
+            <div id="progress"></div>
+        </div>
+        <div id="progress-percentage">0%</div>
+    </div>
 
     <!-- Unity canvas -->
     <canvas id="unity-canvas" width="960" height="600" tabindex="-1" style="width: 960px; height: 600px; background: #CCCCCC"></canvas>
@@ -48,7 +74,7 @@
             document.body.style.textAlign = "left";
         }
 
-        // Unity instance creation with loader control
+        // Unity instance creation with progress control
         createUnityInstance(document.querySelector("#unity-canvas"), {
             dataUrl: "Build/f9171858483efae6232974b2a917afa8.data",
             frameworkUrl: "Build/fd42abddfb4cd6d9eea9609846e3cb95.framework.js",
@@ -57,6 +83,13 @@
             companyName: "psgaming",
             productName: "PirateRush_WebDemo1",
             productVersion: "0.1",
+            onProgress: (unityInstance, progress) => {
+                // Update the progress bar width and text
+                var progressBar = document.getElementById("progress");
+                var progressPercentage = document.getElementById("progress-percentage");
+                progressBar.style.width = (progress * 100) + "%";
+                progressPercentage.innerText = Math.round(progress * 100) + "%";
+            }
         }).then((unityInstance) => {
             // Hide the loader once Unity is ready
             document.getElementById("loader").style.display = "none";

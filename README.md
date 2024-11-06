@@ -1,7 +1,7 @@
 # piraterush_web
 
-##Gameplay
+## Gameplay
 Pirate Rush is a runner game where a pirate navigates left and right ⬅️➡️ to avoid obstacles and collects coins and treasure for points.
 
-##Live
+## Live
 https://prenikshah.github.io/piraterush_web/

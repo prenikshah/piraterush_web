@@ -1,8 +1,8 @@
-const cacheName = "psgaming-PirateRush_WebDemo1-0.1";
+const cacheName = "psgaming-PirateRush_Cocacola-0.1";
 const contentToCache = [
     "Build/bb0d9ecdb05db3e84da20bd14a4f84dc.loader.js",
     "Build/08be164d17ff39ab3c365775127f0ed1.framework.js",
-    "Build/42ea89047cdfca850ea025fa36c6fc87.data",
+    "Build/5fcdfb2fd886998a3c5e3662fd533c8e.data",
     "Build/9305710dd527d5246870686492dd49e8.wasm",
     "TemplateData/style.css"
 
